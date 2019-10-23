@@ -1,0 +1,18 @@
+Action Nedir ? 
+Context Apide, Provider Componentimizin içinde hangi işlemin gerçekleşeceğini ve hangi veriler 
+gönderileceğini belirten JS objesidir. 2 türlü property barındırır;
+    1- Type: Hangi İşlemin Gerçekleşeceği 
+        Örneğin biz user ekliceksek addUser şeklinde bunu typeda belirtebiliyoruz
+    2- Payload: Hangi verinin gönderileceği
+
+Dispatch Nedir ?
+
+Actionları contexte göndermekle görevli bir Javascript fonksiyonudur
+Provider stateinin içinde bulunur
+Bu sayde biz en alttaki componentımızda vlueyu geçirdiğimiz için bu dispatche de erişmiş oluruz
+dispatch içinden actionlarımızı göndermiş oluyoruz
+(statein içine yazıyoruz)
+Reducer Nedir ? 
+
+Dispatchle gönderilen action tipine göre state i değiştirecek işlemlerden sorumlu 
+bir JS fonksiyonudur
