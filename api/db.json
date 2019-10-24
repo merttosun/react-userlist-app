@@ -1,0 +1,52 @@
+{
+  "users": [
+    {
+      "id": "unique-1",
+      "name": "Mert TOSUN",
+      "salary": "5000",
+      "department": "Bilişim"
+    },
+    {
+      "id": "unique-2",
+      "name": "Aslı Eda İNANÇ",
+      "salary": "5000",
+      "department": "Tasarım"
+    },
+    {
+      "id": "unique-3",
+      "name": "Semra TOSUN",
+      "salary": "5000",
+      "department": "Donanım"
+    },
+    {
+      "name": "kıvanç çolak",
+      "department": "makine",
+      "salary": "6000",
+      "id": "pBFzRh7"
+    },
+    {
+      "name": "çağatay uncu",
+      "salary": "11100",
+      "department": "bilgisayar mühhhhh",
+      "id": "E0ZqMAH"
+    },
+    {
+      "name": "yılmaz zeren",
+      "department": "haberleşme",
+      "salary": "5000",
+      "id": "vUKJSRi"
+    },
+    {
+      "name": "atilla uysal",
+      "salary": "5300",
+      "department": "pazarlama",
+      "id": "cw7jIWf"
+    },
+    {
+      "name": "Alparslan Türkeş",
+      "salary": "7000",
+      "department": "Turan",
+      "id": "98o2BCo"
+    }
+  ]
+}

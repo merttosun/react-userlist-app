@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
 import posed from 'react-pose';
 import UserConsumer from "../context";
-
-var uniqid = require('uniqid');
+import axios from "axios";
 const Animation = posed.div({
     visible: {
         opacity: 1,
@@ -22,12 +21,20 @@ class AddUser extends Component {
         visible: true,
         name : "",
         department :"",
-        salary: ""
+        salary: "",
+        error: false
     }
     changeVisibility = (e) => { 
         this.setState({
             visible:!this.state.visible
         })
+    }
+    validateForm = () => {
+        const {name,salary,department} = this.state;
+            if(name === "" || salary === "" || department ==="") {
+                return false;
+            }
+            return true;
     }
     changeInput = (e) => { 
         this.setState({
@@ -35,12 +42,12 @@ class AddUser extends Component {
             [e.target.name] : e.target.value
         })
     }
-    addUser = (dispatch, e) => { 
+     addUser = async (dispatch, e) => { 
 
         e.preventDefault();
         const {name,department,salary} = this.state;
         const newUser = { 
-            id: uniqid(),
+            
             // name : name,
             // salary : salary,
             // department : department   böyle hem anahtar hem değeri aynıysa aşağıdaki gibi yazabiliyoruz
@@ -49,8 +56,21 @@ class AddUser extends Component {
             salary
 
         }
-        dispatch({type : "ADD_USER", payload: newUser});
-        console.log(newUser);
+
+        if(!this.validateForm()){ // eğer validate formdan false değeri dönmüşse
+            this.setState({
+                error:true
+            })
+            return;
+
+        }
+
+        const response = await axios.post("http://localhost:3004/users",newUser);
+
+
+        dispatch({type : "ADD_USER", payload:response.data});
+        //redirect  tüm işlemlerimiz bittince root a gitmek istediğimizi belirrtiyoruz
+        this.props.history.push("/");
     }
     // changeName = (e) => { 
     //     this.setState({
@@ -68,7 +88,7 @@ class AddUser extends Component {
     //     })
     // }
     render() {
-        const {visible,name,salary,department} = this.state;
+        const {visible,name,salary,department,error} = this.state;
         return <UserConsumer>
                 {
                     value => { 
@@ -83,7 +103,11 @@ class AddUser extends Component {
                                     <div className ="card-header">
                                         <h4 >Add User Form</h4>
                                     </div>
+
                                     <div className="card-body">
+                                        {
+                                            error ? <div className ="alert alert-danger">Lütfen Bilgilerinizi Kontrol Edin!</div> : null
+                                        }
                                         <form onSubmit = {this.addUser.bind(this,dispatch)}>
                                             <div className = "form-group">
                                                 <label htmlFor = "name">Name</label>
